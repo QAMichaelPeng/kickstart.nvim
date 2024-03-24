@@ -240,7 +240,9 @@ require('lazy').setup({
   --  This is equivalent to:
   --    require('Comment').setup({})
 
-  -- "gc" to comment visual regions/lines
+  -- https://github.com/numToStr/Comment.nvim
+  -- "gc" to comment visual regions/lines using linewise comments
+  -- "gb" to comment visual regions/lines using blockwise comments
   { 'numToStr/Comment.nvim', opts = {} },
 
   -- Here is a more advanced example where we pass configuration
@@ -850,6 +852,64 @@ require('lazy').setup({
   --    For additional information, see `:help lazy.nvim-lazy.nvim-structuring-your-plugins`
   -- { import = 'custom.plugins' },
   { 'liuchengxu/vista.vim' },
+
+  -- https://github.com/nvim-tree/nvim-tree.lua
+  -- https://github.com/nvim-tree/nvim-tree.lua/blob/85c502e9076d9c82e2f04addabb3614846ae7558/doc/nvim-tree-lua.txt
+  -- As of my last update, the nvim-tree.lua (often referred to as NvimTree) plugin for Neovim comes with a set of default key mappings that allow you to navigate and manipulate the file tree and its contents. Here's a summary of commonly used default key mappings within the NvimTree buffer:
+  --
+  -- <CR> or o: Open a file or directory. If the node is a directory, it toggles between open and closed. If the node is a file, it opens the file in the last used window.
+  -- <2-LeftMouse>: Same as <CR>.
+  -- <2-RightMouse>, <C-]>**: cd into a directory.
+  -- <C-]>: CD
+  -- <C-E>: Open: In Place
+  -- <C-K>: Info
+  -- <C-R>: Rename: Omit Filename
+  -- <C-T>: Open a file in a new tab.
+  -- <C-V>: Open a file in a vertical split.
+  -- <C-X>: Open a file in a horizontal split.
+  -- <BS>: Close the current opened directory or parent.
+  -- <CR>: Open
+  -- <Tab>: Open Preview
+  -- -: Navigate up to the parent directory.
+  -- <: Previous Sibling
+  -- ?: Find backwords
+  -- B: Toggle filter: no buffer(only show filesd with a buffer)
+  -- C: Toggle git clean: only show file with git status
+  -- D: Trash
+  -- E: Expand All
+  -- F: Clean filter
+  -- H: Toggle dotfiles (hide/show files starting with a dot).
+  -- I: Toggle hidden files.
+  -- J: Last sibling
+  -- K: First sibling
+  -- O: Open: No Window Picker
+  -- P: Parent Directory
+  -- R: Refresh the tree.
+  -- S: Search(doens't work well, use telescope search file)
+  -- U: Toggle Hidden
+  -- W: Collapse
+  -- Y: Copy relative path
+  -- a: Add a file. When adding a directory, append / to the end of the directory name.
+  -- bmv: Move Bookmarked(Not sure how to sue)
+  -- [c: Prev Git
+  -- ]c: Next Git
+  -- c: Copy a file.
+  -- d: Delete a file/directory (with confirmation).
+  -- e: Rename: Basename
+  -- [e: Previous Diagnostic
+  -- ]e: Next Diagnostic
+  -- f: Filter
+  -- g?: Help
+  -- gy: Copy Absolute Path
+  -- m: Toggle Bookmark
+  -- o: Open
+  -- p: Paste a file
+  -- q: Close
+  -- r: Rename
+  -- s: Run System
+  -- x: Cut
+  -- y: Copy Name
+  -- y: Copy a file name to the system clipboard.
   {
     'nvim-tree/nvim-tree.lua',
     opts = {
