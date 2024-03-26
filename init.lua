@@ -990,6 +990,12 @@ require('lazy').setup({
       },
     },
   },
+  -- Overseer for task action
+  -- https://github.com/stevearc/overseer.nvim
+  {
+    'stevearc/overseer.nvim',
+    opts = {},
+  },
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
