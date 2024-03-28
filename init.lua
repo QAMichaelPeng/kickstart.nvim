@@ -1019,6 +1019,12 @@ require('lazy').setup({
       }
     end,
   },
+  -- UX enhancement
+  -- https://github.com/stevearc/dressing.nvim
+  {
+    'stevearc/dressing.nvim',
+    opts = {},
+  },
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
