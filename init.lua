@@ -1008,7 +1008,7 @@ require('lazy').setup({
             'on_exit_set_status',
             'on_complete_notify',
             'on_complete_dispose',
-            'on_output_quickfix',
+            { 'on_output_quickfix', open = true },
           },
           -- Tasks from tasks.json use these components
           default_vscode = {
@@ -1017,6 +1017,8 @@ require('lazy').setup({
             'on_result_diagnostics_quickfix',
           },
         },
+        vim.keymap.set('n', '<leader>or', ':OverseerRun<CR>', { noremap = true, silent = true }),
+        vim.keymap.set('n', '<leader>oc', ':OverseerRunCmd<CR>', { noremap = true, silent = true }),
       }
     end,
   },
