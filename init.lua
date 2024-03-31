@@ -92,6 +92,9 @@ vim.g.maplocalleader = ' '
 
 -- Set to true if you have a Nerd Font installed
 vim.g.have_nerd_font = true
+--
+-- Set to true if you have github copilot access
+vim.g.have_github_copilot = true
 
 -- vista global config
 vim.g.vista_default_executive = 'nvim_lsp'
@@ -1027,6 +1030,20 @@ require('lazy').setup({
   {
     'stevearc/dressing.nvim',
     opts = {},
+  },
+  {
+    'zbirenbaum/copilot.lua',
+    enabled = vim.g.have_github_copilot,
+    cmd = 'Copilot',
+    build = ':Copilot auth',
+    opts = {
+      suggestion = { enabled = false },
+      panel = { enabled = false },
+      filetypes = {
+        markdown = true,
+        help = true,
+      },
+    },
   },
 }, {
   ui = {
