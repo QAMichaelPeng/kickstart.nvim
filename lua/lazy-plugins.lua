@@ -696,7 +696,6 @@ require('lazy').setup({
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
   --    For additional information, see `:help lazy.nvim-lazy.nvim-structuring-your-plugins`
   -- { import = 'custom.plugins' },
-  { 'liuchengxu/vista.vim' },
 
   -- https://github.com/nvim-tree/nvim-tree.lua
   -- https://github.com/nvim-tree/nvim-tree.lua/blob/85c502e9076d9c82e2f04addabb3614846ae7558/doc/nvim-tree-lua.txt
