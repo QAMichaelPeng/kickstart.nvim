@@ -530,6 +530,8 @@ require('lazy').setup({
       local luasnip = require 'luasnip'
       luasnip.config.setup {}
       vim.keymap.set({ 'i', 's' }, '<c-u>', '<cmd>lua require("luasnip.extras.select_choice")()<cr><C-c><C-c>')
+      -- in tsx file, search tsx, then ts
+      luasnip.filetype_extend('typescriptreact', { 'typescript' })
 
       require('luasnip.loaders.from_lua').load { paths = '~/.config/nvim/snippets' }
 
