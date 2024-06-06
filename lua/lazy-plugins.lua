@@ -529,6 +529,9 @@ require('lazy').setup({
       local cmp = require 'cmp'
       local luasnip = require 'luasnip'
       luasnip.config.setup {}
+      vim.keymap.set({ 'i', 's' }, '<c-u>', '<cmd>lua require("luasnip.extras.select_choice")()<cr><C-c><C-c>')
+
+      require('luasnip.loaders.from_lua').load { paths = '~/.config/nvim/snippets' }
 
       cmp.setup {
         snippet = {
