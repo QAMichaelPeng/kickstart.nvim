@@ -127,21 +127,8 @@ require 'lazy-bootstrap'
 -- [[ Lazy Plugins ]]
 require 'lazy-plugins'
 
-vim.api.nvim_create_user_command('CopyRelPath', function()
-  vim.fn.setreg('+', vim.fn.expand '%')
-end, {})
-
-vim.api.nvim_create_user_command('CopyAbsPath', function()
-  vim.fn.setreg('+', vim.fn.expand '%:p')
-end, {})
-
-vim.api.nvim_create_user_command('CopyRelLine', function()
-  vim.fn.setreg('+', vim.fn.expand '%' .. ':' .. vim.fn.line '.')
-end, {})
-
-vim.api.nvim_create_user_command('CopyAbsLine', function()
-  vim.fn.setreg('+', vim.fn.expand '%:p' .. ':' .. vim.fn.line '.')
-end, {})
+-- [[ Lazy Plugins ]]
+require 'user-methods'
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
