@@ -228,6 +228,34 @@ require('lazy').setup({
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
+      -- must use tformat to add a terminator(\n) at the end
+      -- otherwise telescope would get stuck waiting for terminator
+      -- of last line,
+      -- see https://git-scm.com/docs/pretty-formats
+      local git_log_format = '--pretty=tformat:%h (%an %as) %s'
+
+      local my_builtin = {}
+      my_builtin.git_bcommits = function()
+        builtin.git_bcommits {
+          git_command = {
+            'git',
+            'log',
+            git_log_format,
+            '--follow',
+          },
+        }
+      end
+      my_builtin.git_commits = function()
+        builtin.git_commits {
+          git_command = {
+            'git',
+            'log',
+            git_log_format,
+            '--',
+            '.',
+          },
+        }
+      end
       local extensions = require('telescope').extensions
       vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
@@ -240,6 +268,10 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[,] Find existing buffers' })
+      vim.keymap.set('n', '<leader>gC', my_builtin.git_commits, { desc = '[G]it [C]ommits' })
+      vim.keymap.set('n', '<leader>gc', my_builtin.git_bcommits, { desc = '[G]it Buffer [C]ommits' })
+      vim.keymap.set('n', '<leader>gb', builtin.git_branches, { desc = '[G]it [B]ranches' })
+      vim.keymap.set('n', '<leader>gs', builtin.git_stash, { desc = '[G]it [S]tash' })
 
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
