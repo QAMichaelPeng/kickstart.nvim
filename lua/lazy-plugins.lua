@@ -239,17 +239,7 @@ require('lazy').setup({
       require('telescope').setup {
         -- You can put your default mappings / updates / etc. in here
         --  All the info you're looking for is in `:help telescope.setup()`
-        --
-        defaults = {
-          mappings = {
-            n = {
-              ['<c-d>'] = require('telescope.actions').delete_buffer,
-            },
-            i = {
-              ['<c-d>'] = require('telescope.actions').delete_buffer,
-            },
-          },
-        },
+
         -- pickers = {}
         extensions = {
           ['ui-select'] = {
@@ -269,9 +259,29 @@ require('lazy').setup({
       -- otherwise telescope would get stuck waiting for terminator
       -- of last line,
       -- see https://git-scm.com/docs/pretty-formats
-      local git_log_format = '--pretty=tformat:%h (%an %as) %s'
 
       local my_builtin = {}
+      local git_log_format = '--pretty=tformat:%h (%an %as) %s'
+      local actions = require 'telescope.actions'
+      local action_state = require 'telescope.actions.state'
+      -- Custom buffer picker function with key mappings
+      my_builtin.buffers = function()
+        builtin.buffers {
+          attach_mappings = function(prompt_bufnr, map)
+            -- -- Custom mapping for deleting a buffer
+            local function delete_buffer()
+              local selection = action_state.get_selected_entry()
+              if selection then
+                vim.api.nvim_buf_delete(selection.bufnr, { force = true })
+              end
+              actions.close(prompt_bufnr)
+            end
+            map('i', '<C-d>', delete_buffer)
+            map('n', '<C-d>', delete_buffer)
+            return true -- This ensures that the rest of the mappings are still processed
+          end,
+        }
+      end
       my_builtin.git_bcommits = function()
         builtin.git_bcommits {
           git_command = {
@@ -304,7 +314,7 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
-      vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[,] Find existing buffers' })
+      vim.keymap.set('n', '<leader><leader>', my_builtin.buffers, { desc = '[,] Find existing buffers' })
       vim.keymap.set('n', '<leader>gC', my_builtin.git_commits, { desc = '[G]it [C]ommits' })
       vim.keymap.set('n', '<leader>gc', my_builtin.git_bcommits, { desc = '[G]it Buffer [C]ommits' })
       vim.keymap.set('n', '<leader>gb', builtin.git_branches, { desc = '[G]it [B]ranches' })
