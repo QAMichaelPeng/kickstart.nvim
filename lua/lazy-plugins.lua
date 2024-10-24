@@ -263,21 +263,12 @@ require('lazy').setup({
       local my_builtin = {}
       local git_log_format = '--pretty=tformat:%h (%an %as) %s'
       local actions = require 'telescope.actions'
-      local action_state = require 'telescope.actions.state'
       -- Custom buffer picker function with key mappings
       my_builtin.buffers = function()
         builtin.buffers {
-          attach_mappings = function(prompt_bufnr, map)
-            -- -- Custom mapping for deleting a buffer
-            local function delete_buffer()
-              local selection = action_state.get_selected_entry()
-              if selection then
-                vim.api.nvim_buf_delete(selection.bufnr, { force = true })
-              end
-              actions.close(prompt_bufnr)
-            end
-            map('i', '<C-d>', delete_buffer)
-            map('n', '<C-d>', delete_buffer)
+          attach_mappings = function(_, map)
+            map('i', '<C-d>', actions.delete_buffer)
+            map('n', '<C-d>', actions.delete_buffer)
             return true -- This ensures that the rest of the mappings are still processed
           end,
         }
