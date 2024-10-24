@@ -1,18 +1,25 @@
-vim.api.nvim_create_user_command('CopyRelPath', function()
+function CopyRelPath()
   vim.fn.setreg('+', vim.fn.expand '%')
-end, {})
+end
 
-vim.api.nvim_create_user_command('CopyAbsPath', function()
+function CopyFullPath()
   vim.fn.setreg('+', vim.fn.expand '%:p')
-end, {})
+end
 
-vim.api.nvim_create_user_command('CopyRelLine', function()
+function CopyRelLine()
   vim.fn.setreg('+', vim.fn.expand '%' .. ':' .. vim.fn.line '.')
-end, {})
+end
 
-vim.api.nvim_create_user_command('CopyAbsLine', function()
+function CopyFullLine()
   vim.fn.setreg('+', vim.fn.expand '%:p' .. ':' .. vim.fn.line '.')
-end, {})
+end
+
+-- keep <leader>a as personal customized action prefix
+vim.keymap.set('n', ' cfp', CopyFullPath, { desc = '[C]opy [F]ull [P]ath)' })
+vim.keymap.set('n', ' cfl', CopyFullLine, { desc = '[C]opy [F]ull [L]ine)' })
+vim.keymap.set('n', ' crp', CopyRelPath, { desc = '[C]opy [R]elative [P]ath)' })
+vim.keymap.set('n', ' crl', CopyRelLine, { desc = '[C]opy [R]elative [L]ine)' })
+vim.keymap.set('n', ' ca', ':%yank +<CR>', { desc = '[C]opy [A]ll, then go back to positon before copy' })
 
 -- Function that accepts keywords and returns a closure
 function createBufferFilterFunction(keywords)
