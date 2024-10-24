@@ -850,23 +850,37 @@ require('lazy').setup({
   -- x: Cut
   -- y: Copy Name
   -- y: Copy a file name to the system clipboard.
+  -- {
+  --   'nvim-tree/nvim-tree.lua',
+  --   opts = {
+  --     sort = {
+  --       sorter = 'case_sensitive',
+  --     },
+  --     view = {
+  --       width = 30,
+  --     },
+  --     renderer = {
+  --       group_empty = true,
+  --     },
+  --     filters = {
+  --       dotfiles = true,
+  --     },
+  --   },
+  -- },
+
   {
-    'nvim-tree/nvim-tree.lua',
-    opts = {
-      sort = {
-        sorter = 'case_sensitive',
-      },
-      view = {
-        width = 30,
-      },
-      renderer = {
-        group_empty = true,
-      },
-      filters = {
-        dotfiles = true,
-      },
-    },
+    'stevearc/oil.nvim',
+    ---@module 'oil'
+    ---@type oil.SetupOpts
+    opts = {},
+    -- Optional dependencies
+    dependencies = { 'nvim-tree/nvim-web-devicons' }, -- use if prefer nvim-web-devicons
+    config = function()
+      require('oil').setup()
+      vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
+    end,
   },
+
   -- Overseer for task action
   -- https://github.com/stevearc/overseer.nvim
   {
