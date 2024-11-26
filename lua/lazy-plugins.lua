@@ -10,7 +10,7 @@
 --
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
-  require 'kickstart/plugins/plenary',
+  require 'kickstart.plugins.plenary',
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
@@ -31,14 +31,14 @@ require('lazy').setup({
   -- "gb" to comment visual regions/lines using blockwise comments
   'numToStr/Comment.nvim',
 
-  require 'kickstart/plugins/gitsigns',
+  require 'kickstart.plugins.gitsigns',
 
   -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
   --
   -- This is often very useful to both group configuration, as well as handle
   -- lazy loading plugins that don't need to be loaded immediately at startup.
   --
-  require 'kickstart/plugins/which-key',
+  require 'kickstart.plugins.which-key',
 
   -- NOTE: Plugins can specify dependencies.
   --
@@ -47,18 +47,18 @@ require('lazy').setup({
   --
   -- Use the `dependencies` key to specify the dependencies of a particular plugin
 
-  require 'kickstart/plugins/mini',
-  require 'kickstart/plugins/telescope',
-  require 'kickstart/plugins/lspconfig',
-  require 'kickstart/plugins/conform',
-  require 'kickstart/plugins/cmp',
-  require 'kickstart/plugins/tokyonight',
-  require 'kickstart/plugins/treesitter',
-  require 'kickstart/plugins/oil',
-  require 'kickstart/plugins/overseer',
+  require 'kickstart.plugins.mini',
+  require 'kickstart.plugins.telescope',
+  require 'kickstart.plugins.lspconfig',
+  require 'kickstart.plugins.conform',
+  require 'kickstart.plugins.cmp',
+  require 'kickstart.plugins.tokyonight',
+  require 'kickstart.plugins.treesitter',
+  require 'kickstart.plugins.oil',
+  require 'kickstart.plugins.overseer',
   'stevearc/dressing.nvim',
-  require 'kickstart/plugins/copilot',
-  require 'kickstart/plugins/auto-session',
+  require 'kickstart.plugins.copilot',
+  require 'kickstart.plugins.auto-session',
 
   -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
