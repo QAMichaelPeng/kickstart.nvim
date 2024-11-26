@@ -162,13 +162,6 @@ return {
             },
           },
         },
-        rust_analyzer = {
-          ['rust-analyzer'] = {
-            checkOnSave = {
-              command = 'clippy',
-            },
-          },
-        },
       }
 
       -- Ensure the servers and tools above are installed
