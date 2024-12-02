@@ -162,6 +162,7 @@ return {
             },
           },
         },
+        jdtls = {},
       }
 
       -- Ensure the servers and tools above are installed
@@ -179,6 +180,10 @@ return {
         'stylua', -- Used to format Lua code
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
+      -- for some lsp, we only want to install lsp server here
+      -- but config neovim lsp client manually
+      -- then exclude them from lsp config here
+      local exclude_from_lsp_config = { 'jdtls' }
 
       require('mason-lspconfig').setup {
         handlers = {
@@ -188,7 +193,9 @@ return {
             -- by the server configuration above. Useful when disabling
             -- certain features of an LSP (for example, turning off formatting for tsserver)
             server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-            require('lspconfig')[server_name].setup(server)
+            if not vim.tbl_contains(exclude_from_lsp_config, server_name) then
+              require('lspconfig')[server_name].setup(server)
+            end
           end,
         },
       }
