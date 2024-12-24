@@ -26,6 +26,7 @@ return {
         },
       }
       vim.keymap.set('n', '<leader>or', ':OverseerRun<CR>', { noremap = true, silent = true })
+      vim.keymap.set('n', '<leader>oo', ':OverseerOpen<CR>', { noremap = true, silent = true })
       vim.keymap.set('n', '<leader>oc', ':OverseerRunCmd<CR>', { noremap = true, silent = true })
     end,
   },
