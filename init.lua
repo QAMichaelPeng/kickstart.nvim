@@ -118,6 +118,15 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.highlight.on_yank()
   end,
 })
+
+-- open whl as zip
+vim.api.nvim_create_autocmd({ 'BufReadCmd' }, {
+  pattern = '*.whl',
+  callback = function()
+    vim.cmd 'call zip#Browse(expand("<amatch>"))'
+  end,
+})
+
 -- [[ Basic Keymaps ]]
 require 'keymaps'
 
