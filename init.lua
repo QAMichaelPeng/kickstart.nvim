@@ -127,6 +127,14 @@ vim.api.nvim_create_autocmd({ 'BufReadCmd' }, {
   end,
 })
 
+-- sql comment string
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'sql',
+  callback = function()
+    vim.bo.commentstring = '-- %s'
+  end,
+})
+
 -- [[ Basic Keymaps ]]
 require 'keymaps'
 
