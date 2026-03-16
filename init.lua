@@ -105,25 +105,29 @@ require 'options'
 -- [[ Basic Keymaps ]]
 require 'keymaps'
 
+-- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes
+-- vim.keymap.set("n", "<C-S-h>", "<C-w>H", { desc = "Move window to the left" })
+-- vim.keymap.set("n", "<C-S-l>", "<C-w>L", { desc = "Move window to the right" })
+-- vim.keymap.set("n", "<C-S-j>", "<C-w>J", { desc = "Move window to the lower" })
+-- vim.keymap.set("n", "<C-S-k>", "<C-w>K", { desc = "Move window to the upper" })
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
---  See `:help vim.highlight.on_yank()`
+--  See `:help vim.hl.on_yank()`
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
   group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
-  callback = function()
-    vim.highlight.on_yank()
-  end,
+  callback = function() vim.hl.on_yank() end,
 })
 
 -- open whl as zip
-vim.api.nvim_create_autocmd({ 'BufReadCmd' }, {
-  pattern = '*.whl',
+vim.api.nvim_create_autocmd({ ‘BufReadCmd’ }, {
+  pattern = ‘*.whl’,
   callback = function()
-    vim.cmd 'call zip#Browse(expand("<amatch>"))'
+    vim.cmd ‘call zip#Browse(expand("<amatch>"))’
   end,
 })
 
@@ -134,9 +138,6 @@ vim.api.nvim_create_autocmd('FileType', {
     vim.bo.commentstring = '-- %s'
   end,
 })
-
--- [[ Basic Keymaps ]]
-require 'keymaps'
 
 -- [[ Lazy Bootstrap ]]
 require 'lazy-bootstrap'
