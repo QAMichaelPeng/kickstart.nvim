@@ -124,10 +124,10 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 -- open whl as zip
-vim.api.nvim_create_autocmd({ ‘BufReadCmd’ }, {
-  pattern = ‘*.whl’,
+vim.api.nvim_create_autocmd({ 'BufReadCmd' }, {
+  pattern = '*.whl',
   callback = function()
-    vim.cmd ‘call zip#Browse(expand("<amatch>"))’
+    vim.cmd 'call zip#Browse(expand("<amatch>"))'
   end,
 })
 
